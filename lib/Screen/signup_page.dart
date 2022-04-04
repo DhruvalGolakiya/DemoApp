@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unused_import, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_demo1/Screen/login_page.dart';
