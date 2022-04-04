@@ -1,6 +1,9 @@
-// ignore_for_file: use_key_in_widget_constructors, unused_field, prefer_const_constructors, duplicate_ignore
+// ignore_for_file: use_key_in_widget_constructors, unused_field, prefer_const_constructors, duplicate_ignore, non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_demo1/Screen/home_page.dart';
+import 'package:flutter_demo1/Screen/signup_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -57,14 +60,17 @@ class _LoginPageState extends State<LoginPage> {
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(20))));
     final LoginButton = Material(
-      elevation: 7,
-      borderRadius: BorderRadius.circular(20),
+      elevation: 4,
+      borderRadius: BorderRadius.circular(30),
       color: Colors.blueAccent,
       child: MaterialButton(
-        splashColor: Color.fromARGB(255, 255, 0, 0),
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 1),
+        splashColor: Color.fromARGB(255, 21, 0, 255),
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        },
         child: Text(
           "Login",
           textAlign: TextAlign.center,
@@ -80,11 +86,46 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           color: Color.fromARGB(255, 255, 255, 255),
           child: Padding(
-            padding: const EdgeInsets.all(30.0),
+            padding: EdgeInsets.all(40.0),
             child: Form(
                 key: _formKey,
                 child: Column(
-                  children: <Widget>[emailField, passwordField, LoginButton],
+                  children: <Widget>[
+                    SizedBox(
+                      height: 300,
+                      child: Image.asset(
+                        "assets/login.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    emailField,
+                    SizedBox(height: 15),
+                    passwordField,
+                    SizedBox(height: 25),
+                    LoginButton,
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Don't have an account?"),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUp()));
+                          },
+                          child: Text(
+                            "SignUp",
+                            style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 15),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 )),
           ),
         ),
