@@ -1,10 +1,13 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_import
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo1/widgets/bottom_navbar.dart';
+import 'package:flutter_demo1/widgets/drawer.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
 import 'home_page1.dart';
+import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,7 +20,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 4,
       vsync: this,
     );
@@ -29,8 +32,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _tabController!.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.arrow_back_ios_new_sharp),
+            onPressed: (() {
+              logout(context);
+            })),
         body: TabBarView(
           physics:
               NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
@@ -51,7 +60,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ],
         ),
-        drawer: Drawer(),
+        drawer: Drawer1(),
         appBar: AppBar(
           centerTitle: true,
           title: Text("HomePage"),
@@ -87,5 +96,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             });
           },
         ));
+  }
+
+  Future<void> logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }
