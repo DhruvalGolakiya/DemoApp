@@ -6,7 +6,7 @@ class UserModel {
 
   UserModel({this.email, this.firstName, this.lastName, this.uid});
 
-  //recevied  data from server
+  //recevied     data from server
 
   factory UserModel.fromMap(map) {
     return UserModel(

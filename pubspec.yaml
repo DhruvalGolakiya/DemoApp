@@ -38,9 +38,11 @@ dependencies:
   motion_tab_bar_v2: ^0.2.6
   cloud_firestore: ^3.1.11
   firebase_auth: ^3.3.12
-  
+  shared_preferences: ^2.0.6
   firebase_core: ^1.14.0
   fluttertoast: ^8.0.9
+  flutter_secure_storage: ^5.0.2
+  collection: ^1.15.0
 
 dev_dependencies:
   flutter_test:
