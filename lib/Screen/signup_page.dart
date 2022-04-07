@@ -156,6 +156,7 @@ class _SignUPState extends State<SignUp> {
               passwordNameEditingController.text) {
             return ("Check your password Again");
           }
+          return null;
         },
         onSaved: (value) {
           confirmPasswordNameEditingController.text = value!;

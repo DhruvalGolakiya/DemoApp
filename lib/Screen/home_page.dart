@@ -2,8 +2,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_demo1/widgets/bottom_navbar.dart';
 import 'package:flutter_demo1/widgets/drawer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
 import 'home_page1.dart';
@@ -35,11 +37,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.arrow_back_ios_new_sharp),
-            onPressed: (() {
-              logout(context);
-            })),
         body: TabBarView(
           physics:
               NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
@@ -96,11 +93,5 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             });
           },
         ));
-  }
-
-  Future<void> logout(BuildContext context) async {
-    await FirebaseAuth.instance.signOut();
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }
