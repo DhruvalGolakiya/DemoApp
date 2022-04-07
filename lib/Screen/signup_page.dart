@@ -1,12 +1,17 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unused_import, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unused_import, use_key_in_widget_constructors, unused_local_variable, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_demo1/AuthTypes/GoogleAuth.dart';
+import 'package:flutter_demo1/AuthTypes/goolg2.dart';
 import 'package:flutter_demo1/Screen/home_page.dart';
 import 'package:flutter_demo1/Screen/login_page.dart';
 import 'package:flutter_demo1/models/usermodel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -14,7 +19,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUPState extends State<SignUp> {
-  //  Sign formKey
+  GoogleSignIn _googleSignIn = GoogleSignIn();
+
   final _formKey = GlobalKey<FormState>();
 // animtion
 
@@ -30,6 +36,7 @@ class _SignUPState extends State<SignUp> {
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    GoogleSignInAccount? user = _googleSignIn.currentUser;
     //first Name field
     final firstName = TextFormField(
         autofocus: false,
@@ -179,7 +186,8 @@ class _SignUPState extends State<SignUp> {
       child: MaterialButton(
         splashColor: Color.fromARGB(255, 21, 0, 255),
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-        minWidth: MediaQuery.of(context).size.width,
+        minWidth: 400,
+        height: 60,
         onPressed: () {
           SignUp(emailNameEditingController.text,
               passwordNameEditingController.text);
@@ -193,6 +201,31 @@ class _SignUPState extends State<SignUp> {
       ),
     );
 
+    final GoogleSignIn = TextButton.icon(
+      style: TextButton.styleFrom(
+        minimumSize: Size(400, 60),
+        /*  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 100), */
+        backgroundColor: Color.fromARGB(255, 255, 0, 0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+      onPressed: () async {
+        final provider = Provider.of<GooglewithSignin>(context, listen: false);
+        provider.googleLogin();
+        /* await _googleSignIn.signIn();
+        setState(() {}); */
+      },
+      icon: Icon(
+        FontAwesomeIcons.google,
+        color: Colors.white,
+      ),
+      label: Text(
+        'Google SignIn',
+        style: TextStyle(
+            color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    );
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -242,6 +275,10 @@ class _SignUPState extends State<SignUp> {
                                 SizedBox(
                                   height: 10,
                                 ),
+                                GoogleSignIn,
+                                SizedBox(
+                                  height: 20,
+                                )
                               ],
                             )))))));
   }

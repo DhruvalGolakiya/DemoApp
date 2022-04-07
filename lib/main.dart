@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_const_constructors, unused_import, use_key_in_widget_constructors
 
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_demo1/AuthTypes/goolg2.dart';
 import 'package:flutter_demo1/Screen/home_page.dart';
 import 'package:flutter_demo1/models/routes.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'Screen/login_page.dart';
 
 Future<void> main() async {
@@ -27,12 +27,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => GooglewithSignin(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MainPage(),
       ),
-      home: MainPage(),
     );
   }
 }

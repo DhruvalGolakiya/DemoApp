@@ -44,6 +44,8 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   font_awesome_flutter: ^10.1.0
   multilevel_drawer: ^2.0.0
+  provider: ^6.0.2
+  google_sign_in: ^5.2.4
   
 
 dev_dependencies:
@@ -72,7 +74,7 @@ flutter:
 
   assets:
     - assets/login.png
-    - assets/p1.png
+    
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
