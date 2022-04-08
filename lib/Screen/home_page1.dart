@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_this
+// ignore_for_file: prefer_const_constructors, unnecessary_this, unused_import
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

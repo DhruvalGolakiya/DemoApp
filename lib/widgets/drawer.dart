@@ -8,7 +8,7 @@ import 'package:flutter_demo1/Screen/setting_page.dart';
 
 import 'package:flutter_demo1/models/usermodel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:multilevel_drawer/multilevel_drawer.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Drawer1 extends StatefulWidget {
   @override
@@ -48,8 +48,7 @@ class _Drawer1State extends State<Drawer1> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(
-                        "https://st2.depositphotos.com/3369547/11386/v/950/depositphotos_113863470-stock-illustration-avatar-man-icon-people-design.jpg?forcejpeg=true"),
+                    image: NetworkImage(user!.photoURL!),
                   ),
                   shape: BoxShape.circle,
                   color: Color.fromARGB(255, 4, 80, 244)),
@@ -58,7 +57,7 @@ class _Drawer1State extends State<Drawer1> {
               user!.email!,
             ),
             accountName: Text(
-              "${loggedInUser.firstName}" "${loggedInUser.lastName}",
+              user!.displayName!,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
           ),
@@ -125,6 +124,7 @@ class _Drawer1State extends State<Drawer1> {
   }
 
   Future<void> logout(BuildContext context) async {
+    await GoogleSignIn().disconnect();
     await FirebaseAuth.instance.signOut();
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));

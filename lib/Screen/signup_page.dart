@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unused_import, use_key_in_widget_constructors, unused_local_variable, prefer_const_literals_to_create_immutables, prefer_final_fields
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unused_import, use_key_in_widget_constructors, unused_local_variable, prefer_const_literals_to_create_immutables, prefer_final_fields, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_demo1/AuthTypes/GoogleAuth.dart';
-import 'package:flutter_demo1/AuthTypes/goolg2.dart';
+
 import 'package:flutter_demo1/Screen/home_page.dart';
 import 'package:flutter_demo1/Screen/login_page.dart';
 import 'package:flutter_demo1/models/usermodel.dart';
@@ -19,8 +18,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUPState extends State<SignUp> {
-  GoogleSignIn _googleSignIn = GoogleSignIn();
-
   final _formKey = GlobalKey<FormState>();
 // animtion
 
@@ -36,7 +33,6 @@ class _SignUPState extends State<SignUp> {
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    GoogleSignInAccount? user = _googleSignIn.currentUser;
     //first Name field
     final firstName = TextFormField(
         autofocus: false,
@@ -210,9 +206,10 @@ class _SignUPState extends State<SignUp> {
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      onPressed: () async {
-        final provider = Provider.of<GooglewithSignin>(context, listen: false);
-        provider.googleLogin();
+      onPressed: () {
+        googleLogin();
+        /* final provider = Provider.of<GooglewithSignin>(context, listen: false);
+        provider.googleLogin(); */
         /* await _googleSignIn.signIn();
         setState(() {}); */
       },
@@ -316,6 +313,33 @@ class _SignUPState extends State<SignUp> {
         .doc(user.uid)
         .set(userModel.toMap());
     Fluttertoast.showToast(msg: "Account Created Successfully");
+
+    Navigator.pushAndRemoveUntil((context),
+        MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+  }
+
+  googleLogin() async {
+    print("googleLogin method Called");
+    GoogleSignIn _googleSignIn = GoogleSignIn();
+    try {
+      var reslut = await _googleSignIn.signIn();
+      if (reslut == null) {
+        return;
+      }
+
+      final userData = await reslut.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: userData.accessToken, idToken: userData.idToken);
+      var finalResult =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      print("Result $reslut");
+      print(reslut.displayName);
+      print(reslut.email);
+
+      print(reslut.photoUrl);
+    } catch (error) {
+      print(error);
+    }
 
     Navigator.pushAndRemoveUntil((context),
         MaterialPageRoute(builder: (context) => HomePage()), (route) => false);

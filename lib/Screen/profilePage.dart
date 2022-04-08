@@ -1,9 +1,10 @@
-// ignore_for_file: unnecessary_this, prefer_const_constructors
+// ignore_for_file: unnecessary_this, prefer_const_constructors, use_key_in_widget_constructors, file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo1/models/usermodel.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -46,22 +47,29 @@ class _ProfilePageState extends State<ProfilePage> {
                 "Full Profile Information",
                 style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.w800),
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 25,
+            ),
+            CircleAvatar(
+              radius: 40,
+              backgroundImage: NetworkImage(user!.photoURL!),
+            ),
+            SizedBox(
+              height: 15,
             ),
             Text(
-              '${loggedInUser.email}',
+              user!.displayName!,
               style: TextStyle(
                   fontSize: 15, color: Color.fromARGB(255, 94, 94, 94)),
             ),
             SizedBox(
               height: 20,
             ),
-            Text("FirstName :-" "   " '${loggedInUser.firstName}',
+            /* Text("FirstName :-" "   " '${loggedInUser.firstName}',
                 style: TextStyle(fontSize: 17)),
             SizedBox(
               height: 10,
@@ -69,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Text(
               "LastName :-" "   " '${loggedInUser.lastName}',
               style: TextStyle(fontSize: 17),
-            ),
+            ), */
             SizedBox(
               height: 10,
             ),
