@@ -12,11 +12,12 @@ class UserModel {
 
   factory UserModel.fromMap(map) {
     return UserModel(
-        uid: map['uid'],
-        email: map['email'],
-        firstName: map['firstName'],
-        lastName: map['lastName'],
-        displayName: map['firstName']);
+      uid: map['uid'],
+      email: map['email'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
+      displayName: map['firstName'],
+    );
   }
 
   // sending data to server
@@ -28,6 +29,29 @@ class UserModel {
       'firstName': firstName,
       'lastName': lastName,
       'displayName': firstName,
+    };
+  }
+}
+
+class InfoModel {
+  String? name;
+  String? information;
+
+  InfoModel({this.name, this.information});
+
+  factory InfoModel.fromMap(map) {
+    return InfoModel(
+      name: map['name'],
+      information: map['information'],
+    );
+  }
+
+  // sending data to server
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'information': information,
     };
   }
 }
