@@ -61,15 +61,33 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 25,
             ),
-            image != null
+            user?.photoURL != null
                 ? ClipOval(
-                    child: Image.file(
-                    image!,
-                    width: 160,
-                    height: 160,
-                    fit: BoxFit.cover,
+                    child: Material(
+                    child: Image.network(
+                      user!.photoURL!,
+                      fit: BoxFit.contain,
+                      height: 100,
+                    ),
                   ))
-                : FlutterLogo(size: 160),
+                : Container(
+                    width: 100,
+                    height: 100,
+                    child: Material(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.red,
+                      child: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Center(
+                          child: Icon(
+                            Icons.person,
+                            size: 80,
+                            color: Color.fromARGB(255, 241, 241, 241),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
             SizedBox(
               height: 15,
             ),
@@ -97,11 +115,17 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 20,
             ),
-            Text(
-              user!.displayName!,
-              style: TextStyle(
-                  fontSize: 15, color: Color.fromARGB(255, 94, 94, 94)),
-            ),
+            user?.displayName != null
+                ? Text(
+                    user!.displayName!,
+                    style: TextStyle(
+                        fontSize: 15, color: Color.fromARGB(255, 94, 94, 94)),
+                  )
+                : Text(
+                    "${loggedInUser.firstName}",
+                    style: TextStyle(
+                        fontSize: 15, color: Color.fromARGB(255, 94, 94, 94)),
+                  ),
             SizedBox(
               height: 20,
             ),
