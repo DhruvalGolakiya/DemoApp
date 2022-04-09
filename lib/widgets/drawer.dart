@@ -43,8 +43,6 @@ class _Drawer1State extends State<Drawer1> {
           UserAccountsDrawerHeader(
             onDetailsPressed: () => selectedDest(4),
             currentAccountPicture: Container(
-              width: 40,
-              height: 40,
               decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,
