@@ -3,12 +3,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_demo1/widgets/bottom_navbar.dart';
+import 'package:flutter_demo1/widgets/btm_nav.dart';
 import 'package:flutter_demo1/widgets/drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
-import 'home_page1.dart';
+import 'Home.dart';
 import 'login_page.dart';
 
 class HomePage extends StatefulWidget {

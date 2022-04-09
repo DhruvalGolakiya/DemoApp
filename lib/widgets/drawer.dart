@@ -3,8 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo1/Screen/login_page.dart';
-import 'package:flutter_demo1/Screen/profilePage.dart';
-import 'package:flutter_demo1/Screen/setting_page.dart';
+import 'package:flutter_demo1/Screen/profile.dart';
+import 'package:flutter_demo1/Screen/settings.dart';
 
 import 'package:flutter_demo1/models/usermodel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
