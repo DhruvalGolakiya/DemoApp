@@ -35,15 +35,18 @@ class UserModel {
 
 class InfoModel {
   String? name;
-  String? information;
+  String? info;
+  String? image;
+  String? key;
 
-  InfoModel({this.name, this.information});
+  InfoModel({this.name, this.info, this.image, this.key});
 
   factory InfoModel.fromMap(map) {
     return InfoModel(
-      name: map['name'],
-      information: map['information'],
-    );
+        name: map['name'],
+        info: map['information'],
+        image: map['imageurl'],
+        key: map['key']);
   }
 
   // sending data to server
@@ -51,7 +54,9 @@ class InfoModel {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'information': information,
+      'information': info,
+      'imageurl': image,
+      'key': key,
     };
   }
 }

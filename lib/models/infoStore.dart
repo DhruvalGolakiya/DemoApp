@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +26,7 @@ class infoStore extends StatelessWidget {
               return Center(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 0),
-                  child: Text(data['Name']),
+                  child: Text(data['image']),
                 ),
               );
             }).toList(),

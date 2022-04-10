@@ -30,13 +30,7 @@ class _HomePage1State extends State<HomePage1> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              imgStore(),
-              infoStore(),
-              imgStore(),
-              imgStore(),
-              imgStore(),
-            ],
+            children: [image(), info()],
           ),
         ),
       ),
