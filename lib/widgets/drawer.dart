@@ -1,13 +1,15 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unnecessary_this, unused_local_variable
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unnecessary_this, unused_local_variable, unused_import
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_demo1/Screen/blog_page.dart';
 import 'package:flutter_demo1/Screen/login_page.dart';
 import 'package:flutter_demo1/Screen/profile.dart';
 import 'package:flutter_demo1/Screen/settings.dart';
 
 import 'package:flutter_demo1/models/usermodel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:motion_tab_bar_v2/motion-tab-item.dart';
 
@@ -116,7 +118,11 @@ class _Drawer1State extends State<Drawer1> {
           ListTile(
               title: Text("LogOut"),
               leading: Icon(Icons.exit_to_app),
-              onTap: () => selectedDest(3))
+              onTap: () => selectedDest(3)),
+          ListTile(
+              title: Text("Blogs"),
+              leading: Icon(FontAwesomeIcons.blogger),
+              onTap: () => selectedDest(5)),
         ],
       ),
     );
@@ -155,6 +161,11 @@ class _Drawer1State extends State<Drawer1> {
       case 4:
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => ProfilePage()));
+        break;
+      case 5:
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => BlogPage()));
+        break;
     }
   }
 
